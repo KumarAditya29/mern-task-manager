@@ -5,14 +5,14 @@ const taskSchema = new mongoose.Schema(
             type: String, 
             required: [true, "Task title is required"],
             trim: true,
-            minLength: 3,
-            maxLength: 100,
+            minlength: [3, "Title must be at least 3 characters"],
+            maxlength: [100, "Title cannot exceed 100 characters"],
         },
 
         description: {
             type: String,
             trim: true,
-            maxLength: 500,
+            maxlength: [500, "Description cannot exceed 500 characters"],
         },
 
         completed: {
@@ -23,6 +23,7 @@ const taskSchema = new mongoose.Schema(
         priority: {
             type: String,
             enum: ["low", "medium", "high"],
+            message: "Priority must be low, medium or high",
             default: "medium",
         },
 
