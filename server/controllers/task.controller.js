@@ -18,4 +18,21 @@ const getAllTasks = async (req, res) => {
   }
 };
 
-export { getAllTasks };
+const createTask = async (req, res) => {
+  try {
+    const task = await Task.create(req.body);
+
+    res.status(201).json({
+      success: true,
+      data: task,
+    });
+  } catch (error) {
+    res.status(500).json({
+      success: false,
+      message: "Failed to create task",
+      error: error.message,
+    });
+  }
+};
+
+export { getAllTasks, createTask };
